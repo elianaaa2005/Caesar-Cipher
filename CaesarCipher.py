@@ -1,14 +1,15 @@
 import string
 
-decryptedMessage = str(input("Enter the message to be encrypted: "))
-inputShift = int(input("Enter the number of character shifts:"))
+def encrypt_message(message, shift):
+    alphabet = string.printable
+    shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+    table = str.maketrans(alphabet, shifted_alphabet)
+    return message.translate(table)
 
-alphabet = string.printable
-tempShift = alphabet[inputShift:] + alphabet[:inputShift]
-table = str.maketrans(alphabet, tempShift)
-encryptedMessage = decryptedMessage.translate(table)
-
-print("Original message: %s" % (decryptedMessage))
-print("Encrypted message: %s" % (encryptedMessage))
-
-a = input("Press close to exit the program")
+if __name__ == "__main__":
+    decrypted_message = input("Enter the message to be encrypted: ")
+    shift = int(input("Enter the number of character shifts: "))
+    encrypted_message = encrypt_message(decrypted_message, shift)
+    print("Original message:", decrypted_message)
+    print("Encrypted message:", encrypted_message)
+    input("Press enter to exit the program.")
